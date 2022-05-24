@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+  min-height: 100vh;
+  background-color: #282c34;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-content: center;
+  justify-content: center;
+  gap: 10vmin;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
