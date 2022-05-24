@@ -3,6 +3,7 @@ import { DiagramContext } from '../../App'
 import SvgBlockIndex from './SvgBlockIndex'
 import './SvgGridStyle.css'
 
+
 export default function SvgGridIndex() {
     const diagram = React.useContext(DiagramContext)
   return (
