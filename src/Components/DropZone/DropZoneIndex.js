@@ -1,7 +1,7 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import './DropZoneStyle.css'
 
-export default function DropZoneIndex({onUpload, children, formats}) {
+export default function DropZoneIndex({onUpload, diagram, setDiagram, children, formats}) {
 
     const drop = React.useRef(null)
     const [dragging, setDragging] = React.useState(false);
@@ -50,7 +50,9 @@ export default function DropZoneIndex({onUpload, children, formats}) {
 
     setDragging(false);
 
-    const files = [...e.dataTransfer.files];
+    var files = e.dataTransfer.files[0]
+    console.log(files)
+   
 
     /** 
     if (count && count < files.length) {
@@ -65,13 +67,18 @@ export default function DropZoneIndex({onUpload, children, formats}) {
     }
 
     if (files && files.length) {
-      onUpload(files);
+
+      const fr = new FileReader()
+      fr.onload = () => {
+        setDiagram(fr.result)
+      }
+      fr.readAsText(files)
+      console.log(diagram)
     }
   };
 
   return (
     <div className='DropArea'
-      onUpload={onUpload} 
       onClick={() => console.log("clicou")}
       ref={drop}
       >
