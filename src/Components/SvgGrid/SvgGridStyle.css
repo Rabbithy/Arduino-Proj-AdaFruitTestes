@@ -2,7 +2,9 @@
     min-width: 30vmin;
     min-height: 4vmin;
     border: 2px hsl(0, 0%, 36%) dashed;
+    /*
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
+    */
 }
