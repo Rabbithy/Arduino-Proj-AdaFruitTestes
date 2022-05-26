@@ -6,8 +6,11 @@ import SvgGridIndex from './Components/SvgGrid/SvgGridIndex';
 export const DiagramContext = React.createContext()
 
 function App() {
+  async function handleDrop(e) {
+    e.preventDefault();
+    e.stopPropagation();
 
-  const [diagram, setDiagram] = React.useState([])
+  }
 
   return (
     <DiagramContext.Provider value={diagram}>
