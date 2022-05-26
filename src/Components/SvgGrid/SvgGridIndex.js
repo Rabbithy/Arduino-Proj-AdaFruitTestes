@@ -1,18 +1,24 @@
 import React from 'react'
-import { DiagramContext } from '../../App'
-import SvgBlockIndex from './SvgBlockIndex'
 import './SvgGridStyle.css'
 
-
-export default function SvgGridIndex() {
-    const diagram = React.useContext(DiagramContext)
-    const SvgBlock = React.useRef()
+export default function SvgGridIndex({ files }) {
+  const parser = new DOMParser();
+  
   return (
     <div className='Grid'>
-      {diagram.map((name) => {
-        <img ref={SvgBlock} src={name} />
+      {files.map(fileContent => {
+        const doc = parser.parseFromString(fileContent, 'text/html');
+        const svg = doc.getElementsByTagName('svg')[0];
+        if (!svg) return null;
+        return (
+          <svg 
+            width={svg.width.baseVal.value}
+            height={svg.height.baseVal.value}
+            dangerouslySetInnerHTML={{__html: svg.innerHTML}}
+          >  
+          </svg>
+        );
       })}
-
     </div>
   )
 }
