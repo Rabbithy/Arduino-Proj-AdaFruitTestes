@@ -21,27 +21,23 @@ export default function DropZoneIndex({onUpload, diagram, setDiagram, children, 
     };
   }, []);
 
-  const handleDragEnter = (e) => {
+
+  function handleDragEnter(e) {
     e.preventDefault();
     e.stopPropagation();
-    
-    if (e.target !== drag.current) {
         setDragging(true);
-      }
   };
   
-  const handleDragLeave = (e) => {
+  function handleDragLeave(e) {
     e.preventDefault();
     e.stopPropagation();
-    
-    if (e.target === drag.current) {
         setDragging(false);
-      }
   };
 
-  const handleDragOver = (e) => {
+  function handleDragOver(e) {
     e.preventDefault();
     e.stopPropagation();
+    setDragging(true);
   };
 
   const handleDrop = (e) => {
@@ -78,25 +74,15 @@ export default function DropZoneIndex({onUpload, diagram, setDiagram, children, 
   };
 
   return (
-    <div className='DropArea'
-      onClick={() => console.log("clicou")}
-      ref={drop}
-      >
-        {dragging && (
-            <div className='DragOver' 
-            ref={drag}
-            >
+    <div className='DropZone' ref={drop}>
+      {dragging ?
+        <span className='DragOver'>
                 Solte aqui.
-            </div>
-        )}
-        {!dragging && (
-            <div
-            ref={drag}
-            >
+        </span> :
+        <span>
                  Arraste para aqui.
-            </div>
-        )}
-        {children}
+        </span>
+      }
     </div>
   )
 }
